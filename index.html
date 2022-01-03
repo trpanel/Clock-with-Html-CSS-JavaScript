@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<title>TR Panel - Clock</title>
+	</head>
+	
+	<body>
+		<div class="clock">
+			<div class="hour">
+				<div class="ch"></div>
+			</div>
+			<div class="min">
+				<div class="cm" ></div>
+			</div>
+			<div class="sec">
+				<div class="cs"></div>
+			</div>
+			<p>Clock</p>
+		</div>
+		
+		<div class="Digital-Clock">
+			<div class="Digital-Clock-hour">
+				<h2>Hours &nbsp  Minutes &nbsp  Seconds</h2>
+				<div class="Digital-BG">
+					<p id="Digital-hour"></p>
+				</div>
+				<div class="Digital-BG">
+					<p id="Digital-minutes"></p>
+				</div>
+				<div class="Digital-BG">
+					<p id="Digital-seconds"></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+
+	const deg = 6;
+	const h_needle = document.querySelector('.ch');
+	const m_needle = document.querySelector('.cm');
+	const s_needle = document.querySelector('.cs');
+
+	function clock(){
+		let current = new Date();
+		let hr = current.getHours() * 30;  // getting current time rotating
+		let mr = current.getMinutes() * deg;
+		let sr = current.getSeconds() * deg;
+		
+		// add this (hr) + (mr/12)
+		h_needle.style.transform = `rotateZ(${(hr) + (mr/12) }deg)`;
+		m_needle.style.transform = `rotateZ(${mr}deg)`;
+		s_needle.style.transform = `rotateZ(${sr}deg)`;
+		
+		
+		document.getElementById('Digital-hour').innerHTML = hr/30;	
+		document.getElementById('Digital-minutes').innerHTML = mr/6;
+		document.getElementById('Digital-seconds').innerHTML = sr/6;
+	}
+
+	setInterval(clock,0);
+
+
+</script>
